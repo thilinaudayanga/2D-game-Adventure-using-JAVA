@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 //Entity package
 import entity.*;
+import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable
 {
@@ -19,12 +20,12 @@ public class GamePanel extends JPanel implements Runnable
 	public final int TileSize = originalTileSize*scale;    // 48x48
 	//set maximum col and row
 	
-	final int maxScreenCol = 16;
-	final int maxScreenRow = 12;
+	public final int maxScreenCol = 16;
+	public final int maxScreenRow = 12;
 	
 	//set Full Screen Size
-	final int ScreenWidth = maxScreenCol*TileSize;
-	final int ScreenHeight = maxScreenRow*TileSize;
+	public final int ScreenWidth = maxScreenCol*TileSize;
+	public final int ScreenHeight = maxScreenRow*TileSize;
 	
 	//FPS
 	int FPS = 60;
@@ -35,6 +36,8 @@ public class GamePanel extends JPanel implements Runnable
 	//player class
 	Player player = new Player(this,keyH);
 	
+	//tile manager OBJ
+	TileManager tileMana = new TileManager(this);
 	//set players default position
 	int playerX = 100;
 	int playerY = 100;
@@ -115,6 +118,8 @@ public class GamePanel extends JPanel implements Runnable
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
+		
+		tileMana.Draw(g2);
 		
 		player.draw(g2);
 		
