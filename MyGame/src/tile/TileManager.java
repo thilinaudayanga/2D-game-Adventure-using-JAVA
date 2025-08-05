@@ -53,43 +53,26 @@ public class TileManager
 		
 	}
 	
+	//*****************Map Load as Text File******************************************
 	public void loadMap()
 	{
 		try
 		{
 			//input map TXT file
-			InputStream is = getClass().getResourceAsStream("/maps/map01.txt");
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			InputStream xm = getClass().getResourceAsStream("/maps/map01.txt");
+			BufferedReader br = new BufferedReader(new InputStreamReader(xm));
 			
-			int col = 0;
-			int row = 0;
-			
-			while(col < gp.maxScreenCol && row < gp.maxScreenRow)
+			for(int i = 0; i < 12 ; i++)
 			{
 				String line = br.readLine();
+				String[] num = line.split(" ");
 				
-				
-				String number[] = line.split(" ");
-				while(col < gp.maxScreenCol)
+				for(int j = 0; j < 16; j++)
 				{
-					
-					
-					int num = Integer.parseInt(number[col]);
-					
-					mapTileNum[row][col] = num;
-					col++;
-					
-					if(col == gp.maxScreenCol)
-					{
-						col = 0;
-						row++;
-					}
-					
+					int number = Integer.parseInt(num[j]);
+					mapTileNum[i][j] = number;
 				}
-				col++;
-				
 			}
-			br.close();
 			
 			
 		}
